@@ -8,10 +8,8 @@ Deadline: **2026-11-21** (all tracks close 21 Nov 2026)
 - ✅ Agent built, tested end-to-end on real BSC mainnet data (see `TEST-RESULTS.md`)
 - ✅ Demo UI built — works via the server AND standalone (`docs/index.html`)
 - ✅ README, demo cases, test results, zkVerify design note all written
-- ❌ **No public tunnel URL yet** — both free no-account tunnels are blocked
-  by the build VM's egress proxy (see "Public endpoint" below). The static
-  demo is the shippable public link until the repo is pushed.
-- ⏳ Repo not yet pushed to GitHub (needs Abid's GitHub auth — one step)
+- ✅ **Public demo live:** https://abidzaenal.github.io/mintguard/ (GitHub Pages, docs/ folder)  
+- ✅ Repo pushed: https://github.com/Abidzaenal/mintguard, Pages enabled on docs/
 - ⏳ Submission form not yet filled (needs Abid, from his phone)
 
 ## Public endpoint
@@ -31,12 +29,12 @@ not a screenshot).
 ## Submission fields (copy-paste ready)
 
 ### Agent Link
-> `https://<abidzaenal>.github.io/<repo>/` — after GitHub Pages is enabled on `docs/`
+> `https://abidzaenal.github.io/mintguard/`
 > (Until then: the repo itself once pushed — `https://github.com/Abidzaenal/mintguard`)
 
 ### Public Endpoint
 > Live API: _(fill in after running `bash scripts/restart-tunnel.sh` on a machine with direct internet, or after deploying `server.mjs` to a free Node host)_
-> Static demo (works now): `https://<abidzaenal>.github.io/<repo>/`
+> Static demo (works now): `https://abidzaenal.github.io/mintguard/`
 
 ### Use Case
 > Free-mint hunters on BNB Chain sign mints and token approvals every day, and the wallet only shows a hex address — not that the contract's source is unverified, that the owner can mint unlimited supply, that it can be paused, or that you are about to grant an unlimited approval. MintGuard screens any BSC contract address, approval, or transaction hash and returns a verdict — ALLOW / CAUTION / BLOCK — with plain-language evidence for every point: code and metadata from public BSC RPC, source verification and owner-power scan from Sourcify, and a buy/sell simulation from honeypot.is. It is built for people who mint daily and for reviewers who want a reproducible, evidence-linked screening instead of a black-box "safe / scam" label. No wallet connection, no keys, no signup.
