@@ -1,0 +1,1 @@
+{"engines":{"node":">=22"},"license":"MIT","name":"mintguard","private":true,"scripts":{"build:ui":"node scripts/build-ui.mjs","start":"node server.mjs","test":"node tests/screen-test.mjs","tunnel":"bash scripts/restart-tunnel.sh"},"type":"module","version":"0.1.0"}
