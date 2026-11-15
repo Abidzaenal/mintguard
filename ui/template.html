@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MintGuard — Wallet &amp; Transaction Guard for BNB Chain</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --line:#30363d; --text:#e6edf3; --muted:#8b949e;
+          --green:#3fb950; --amber:#d29922; --red:#f85149; --blue:#58a6ff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  .wrap { max-width:880px; margin:0 auto; padding:28px 18px 60px; }
+  h1 { font-size:30px; margin:0 0 4px; letter-spacing:-.02em; }
+  h1 .shield { color:var(--green); }
+  p.sub { color:var(--muted); margin:0 0 22px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px; margin:0 0 16px; }
+  .row { display:flex; gap:10px; flex-wrap:wrap; }
+  input[type=text] { flex:1; min-width:260px; background:#0d1117; color:var(--text); border:1px solid var(--line);
+    border-radius:8px; padding:12px 14px; font:15px ui-monospace,SFMono-Regular,Menlo,monospace; }
+  button { background:#238636; color:#fff; border:0; border-radius:8px; padding:12px 20px; font-size:15px; font-weight:600; cursor:pointer; }
+  button:hover { background:#2ea043; }
+  button.ghost { background:transparent; border:1px solid var(--line); color:var(--text); font-weight:500; padding:8px 12px; font-size:13px; }
+  button.ghost:hover { border-color:var(--muted); background:#21262d; }
+  .demo { margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .demo span { color:var(--muted); font-size:13px; }
+  .badge { display:inline-block; padding:4px 12px; border-radius:999px; font-weight:700; font-size:15px; }
+  .ALLOW { background:rgba(63,185,80,.18); color:var(--green); border:1px solid var(--green); }
+  .CAUTION { background:rgba(210,153,34,.15); color:var(--amber); border:1px solid var(--amber); }
+  .BLOCK { background:rgba(248,81,73,.15); color:var(--red); border:1px solid var(--red); }
+  .scorebar { height:10px; background:#21262d; border-radius:99px; overflow:hidden; margin:10px 0 4px; }
+  .scorebar > div { height:100%; }
+  .meta { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:8px 16px; font-size:14px; }
+  .meta b { color:var(--muted); font-weight:500; display:block; font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
+  .meta code { font-size:13px; word-break:break-all; }
+  .finding { border:1px solid var(--line); border-left-width:4px; border-radius:8px; padding:12px 14px; margin:10px 0; }
+  .finding.high { border-left-color:var(--red); }
+  .finding.medium { border-left-color:var(--amber); }
+  .finding.info { border-left-color:var(--blue); }
+  .finding .sev { font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+  .finding.high .sev { color:var(--red); } .finding.medium .sev { color:var(--amber); } .finding.info .sev { color:var(--blue); }
+  .finding h3 { margin:2px 0 4px; font-size:15px; }
+  .finding p { margin:0; color:#c9d1d9; font-size:14px; }
+  .finding .ev { color:var(--muted); font-size:12px; margin-top:6px; }
+  .muted { color:var(--muted); }
+  .small { font-size:13px; }
+  details { margin-top:10px; }
+  summary { cursor:pointer; color:var(--blue); }
+  pre { background:#0d1117; border:1px solid var(--line); border-radius:8px; padding:12px; overflow:auto; font-size:12px; max-height:320px; }
+  .hidden { display:none; }
+  .err { color:var(--red); }
+  .howto { font-size:14px; color:#c9d1d9; }
+  .howto li { margin:6px 0; }
+  footer { color:var(--muted); font-size:13px; margin-top:26px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1><span class="shield">🛡</span> MintGuard</h1>
+  <p class="sub">Wallet &amp; transaction guard for BNB Smart Chain. Paste a contract address or a transaction hash — get a verdict (<b>ALLOW / CAUTION / BLOCK</b>) with plain-language evidence. No wallet connection, no keys, no signup.</p>
+
+  <div class="card">
+    <div class="row">
+      <input id="input" type="text" placeholder="0x contract address or 0x transaction hash…" autocomplete="off" spellcheck="false">
+      <button id="go">Screen it</button>
+    </div>
+    <div class="demo" id="demoBtns"><span>Try it:</span></div>
+    <p class="small muted" id="modeLine">Checks run against public BSC RPC, Sourcify (source verification) and honeypot.is (sell simulation).</p>
+  </div>
+
+  <div id="status" class="card hidden"></div>
+  <div id="result" class="hidden">
+    <div class="card">
+      <span id="verdict" class="badge ALLOW">—</span>
+      <span class="muted small" id="checkedAt"></span>
+      <div class="scorebar"><div id="scoreFill"></div></div>
+      <div class="small muted" id="scoreLine"></div>
+      <div id="failClosed" class="small err hidden" style="margin-top:8px"></div>
+    </div>
+    <div class="card">
+      <h2 style="margin:0 0 10px;font-size:17px">What was checked</h2>
+      <div class="meta" id="meta"></div>
+    </div>
+    <div class="card">
+      <h2 style="margin:0 0 6px;font-size:17px">Findings</h2>
+      <div id="findings"></div>
+    </div>
+    <div class="card">
+      <h2 style="margin:0 0 6px;font-size:17px">What MintGuard cannot tell you</h2>
+      <ul class="howto" id="limits"></ul>
+      <details><summary>Raw JSON response</summary><pre id="rawJson"></pre></details>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin:0 0 8px;font-size:17px">How it works</h2>
+    <ol class="howto">
+      <li><b>On-chain facts</b> — via public BSC RPC: is there code at this address? What are its name / symbol / decimals / supply? Who is the owner? Is it paused? Is it an EIP-1967 proxy, and is the implementation verified?</li>
+      <li><b>Source audit</b> — via Sourcify: is the source verified? If yes, it is scanned for owner-mint, blacklist, adjustable fee/tax, pause and upgrade powers. If not, the bytecode is scanned for the same function selectors — flagged as uncertain, never as proof.</li>
+      <li><b>Sell simulation</b> — via honeypot.is (tokens with a DEX pair only): does a simulated buy/sell succeed, and at what tax? The simulation outcome is trusted over the headline label, because the label has false positives on legitimate restricted tokens.</li>
+      <li><b>Scoring</b> — each finding adds points (unverified source +30, owner-mint +35, confirmed honeypot +40, …) and trust findings subtract them (verified −10, clean simulation −5). Score &lt; 30 → ALLOW, 30–64 → CAUTION, ≥ 65 → BLOCK. If an upstream is unreachable, MintGuard fails closed (CAUTION) instead of guessing.</li>
+    </ol>
+    <p class="small muted">ALLOW means "no specific risk was found" — it is not a guarantee of safety. A verified-looking contract can still be a scam. Never approve an unlimited spend you do not understand.</p>
+  </div>
+
+  <footer>
+    MintGuard — zkVerify Agent Games, Season 01, Wildcard track. Built with public, keyless data sources only.
+    Source &amp; docs: see the repository README. No wallet is ever connected and no private data is read.
+  </footer>
+</div>
+
+<script type="module">
+/*__SCREEN_LIB__*/
+/*__DEMO_CASES__*/
+
+const $ = (id) => document.getElementById(id);
+const inputEl = $("input"), goBtn = $("go"), resultEl = $("result"), statusEl = $("status");
+
+function esc(s) { return String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+
+function renderMeta(m) {
+  const rows = [];
+  const add = (k, v) => { if (v !== null && v !== undefined && v !== "") rows.push(`<div><b>${esc(k)}</b><code>${esc(typeof v === "object" ? JSON.stringify(v) : v)}</code></div>`); };
+  add("Address / hash", m.address || m.txHash);
+  add("Name", m.name); add("Symbol", m.symbol);
+  add("Decimals", m.decimals); add("Total supply", m.totalSupply);
+  add("Owner", m.owner);
+  add("Paused", m.paused === true ? "yes — currently paused" : m.paused === false ? "no" : null);
+  add("Source verified", m.verified === true ? `yes (${esc(m.verificationMatch || "match")})` : m.verified === false ? "no" : null);
+  add("Contract name", m.contractName);
+  add("Proxy implementation", m.implementation);
+  add("Code size", m.codeBytes ? `${m.codeBytes.toLocaleString()} bytes` : null);
+  if (m.honeypot && m.honeypot.checked && m.honeypot.applicable) {
+    add("Sell simulation", `honeypot: ${m.honeypot.isHoneypot}, risk: ${esc(m.honeypot.risk || "?")} (${m.honeypot.riskLevel ?? "?"}), sell tax: ${m.honeypot.sellTax ?? "?"}%`);
+  }
+  if (m.approval) add("Approval", `${m.approval.unlimited ? "UNLIMITED" : "limited"} → ${esc(m.approval.spender)}`);
+  if (m.targetVerdict) add("Target verdict", `${m.targetVerdict} (score ${m.targetScore})`);
+  if (m.from) add("From", m.from);
+  if (m.to) add("To", m.to);
+  if (m.valueWei !== undefined) add("Value (BNB)", (Number(m.valueWei) / 1e18).toString());
+  if (m.status) add("Tx status", m.status);
+  $("meta").innerHTML = rows.join("") || `<div class="muted">No metadata available.</div>`;
+}
+
+function render(r, via) {
+  resultEl.classList.remove("hidden");
+  statusEl.classList.add("hidden");
+  const badge = $("verdict");
+  badge.textContent = r.verdict;
+  badge.className = `badge ${r.verdict}`;
+  $("checkedAt").textContent = ` · checked ${new Date(r.checkedAt).toLocaleString()} · via ${via}`;
+  const fill = $("scoreFill");
+  fill.style.width = `${Math.min(100, r.score)}%`;
+  fill.style.background = r.verdict === "ALLOW" ? "var(--green)" : r.verdict === "CAUTION" ? "var(--amber)" : "var(--red)";
+  $("scoreLine").textContent = `Risk score ${r.score}/100 — ALLOW < 30 · CAUTION 30–64 · BLOCK ≥ 65.`;
+  $("failClosed").classList.toggle("hidden", !r.failClosed);
+  if (r.failClosed) $("failClosed").textContent = "⚠ Fail-closed result: MintGuard could not fully verify this input, so it refuses to say it is safe.";
+  renderMeta(r.metadata || {});
+  $("findings").innerHTML = (r.findings || []).map(f => `
+    <div class="finding ${f.severity}">
+      <span class="sev">${esc(f.severity)} · ${f.points > 0 ? "+" + f.points : f.points} pts</span>
+      <h3>${esc(f.label)}</h3>
+      <p>${esc(f.detail)}</p>
+      <div class="ev">Evidence: ${esc(f.evidence)}</div>
+    </div>`).join("") || `<p class="muted">No findings.</p>`;
+  $("limits").innerHTML = (r.limits || []).map(l => `<li>${esc(l)}</li>`).join("");
+  $("rawJson").textContent = JSON.stringify(r, null, 2);
+}
+
+async function screen(input) {
+  statusEl.classList.remove("hidden");
+  resultEl.classList.add("hidden");
+  statusEl.innerHTML = `Screening <code>${esc(input)}</code>…`;
+  // 1) Try the server API.
+  try {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 30000);
+    const res = await fetch("/api/screen", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ input }), signal: ctrl.signal,
+    });
+    clearTimeout(t);
+    if (res.ok) return render(await res.json(), "server API");
+    statusEl.innerHTML = `<span class="err">Server returned HTTP ${res.status} — falling back to in-browser checks…</span>`;
+  } catch (e) {
+    statusEl.innerHTML = `Server API unreachable (${esc(e.message || e)}) — running the same checks in your browser…`;
+  }
+  // 2) Fallback: run the same screening logic in-browser (keyless public APIs).
+  try {
+    const r = await screenInput(fetch, input);
+    return render(r, "in-browser checks");
+  } catch (e) {
+    statusEl.innerHTML = `<span class="err">Screening failed: ${esc(e.message || e)}</span>`;
+  }
+}
+
+function buildDemoButtons() {
+  const box = $("demoBtns");
+  (window.DEMO_CASES || []).forEach(c => {
+    const b = document.createElement("button");
+    b.className = "ghost";
+    b.textContent = c.label;
+    b.title = `${c.note || ""} (expected: ${c.expected || "?"})`;
+    b.onclick = () => { inputEl.value = c.input; screen(c.input); };
+    box.appendChild(b);
+  });
+}
+
+goBtn.onclick = () => { const v = inputEl.value.trim(); if (v) screen(v); };
+inputEl.addEventListener("keydown", e => { if (e.key === "Enter") goBtn.onclick(); });
+buildDemoButtons();
+</script>
+</body>
+</html>
