@@ -8,7 +8,7 @@ for every point it makes. Built for people who mint free NFTs and sign
 approvals every day on BNB Smart Chain, and who currently have to guess
 whether the contract in front of them is safe.
 
-- 🌐 **Live demo:** no public tunnel URL yet — see [Deployment](#deployment). The demo also runs with **no server at all**: `docs/index.html`
+- 🌐 **Live demo:** https://abidzaenal.github.io/mintguard/ — the full agent, running with no server at all. The demo also runs locally: `docs/index.html`
 - 🧪 **Try it with no server:** `docs/index.html` runs the same checks in your browser (open the file or serve it statically)
 - 📋 **Test results:** [`TEST-RESULTS.md`](TEST-RESULTS.md) — 10 real mainnet contracts, 3 real transactions, 4 edge cases, all live
 
@@ -176,10 +176,8 @@ verdicts in [`TEST-RESULTS.md`](TEST-RESULTS.md).
 
 ## Deployment
 
-**Current status (2026-11-15, honest): there is no public tunnel URL yet.**
-The server runs and is fully tested locally (`http://localhost:8787`), and
-the static demo (`docs/index.html`) is a complete, working agent that runs
-from any static host with no backend. But the two free no-account tunnels
+**Current status (2026-11-15): the public demo is live at https://abidzaenal.github.io/mintguard/ (GitHub Pages, `docs/`).** There is still no public tunnel URL for the API server — it runs and is fully tested locally (`http://localhost:8787`), and the static demo (`docs/index.html`) is a complete, working agent that runs from any static host with no backend.
+ But the two free no-account tunnels
 were both blocked by this build VM's egress proxy:
 
 - **Cloudflare quick tunnel** (`cloudflared`): fails with `tls: first record
@@ -197,9 +195,8 @@ clearly instead of printing a fake URL.
 
 **Two real paths to a public endpoint (one step each):**
 
-1. **Static demo (recommended, no backend needed):** push this repo to
-   GitHub and enable GitHub Pages on `docs/`, or drop `docs/index.html`
-   into Netlify Drop. The page runs the full screening in the visitor's
+1. **Static demo (recommended, no backend needed):** live at https://abidzaenal.github.io/mintguard/ (GitHub Pages on `docs/`).
+    The page runs the full screening in the visitor's
    browser (all three upstream APIs allow cross-origin requests) and falls
    back from the server API automatically.
 2. **Live API:** run `bash scripts/restart-tunnel.sh` from a machine with
