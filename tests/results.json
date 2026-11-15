@@ -1,0 +1,674 @@
+{
+  "testedAt": "2026-11-14T18:14:24.005Z",
+  "addresses": [
+    {
+      "label": "CAKE (PancakeSwap Token)",
+      "address": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
+      "verdict": "ALLOW",
+      "score": 20,
+      "findings": [
+        {
+          "id": "honeypot-clean",
+          "label": "Sell simulation passes (not a honeypot)",
+          "severity": "info",
+          "points": -5
+        },
+        {
+          "id": "verified",
+          "label": "Source code verified on Sourcify",
+          "severity": "info",
+          "points": -10
+        },
+        {
+          "id": "src:mint",
+          "label": "Owner-mintable supply",
+          "severity": "high",
+          "points": 35
+        },
+        {
+          "id": "src:ownership",
+          "label": "Owner-controlled functions",
+          "severity": "info",
+          "points": 0
+        }
+      ],
+      "metadata": {
+        "address": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
+        "chainId": 56,
+        "isContract": true,
+        "codeBytes": 7285,
+        "name": "PancakeSwap Token",
+        "symbol": "Cake",
+        "decimals": 18,
+        "totalSupply": "5836751255751051201610995531",
+        "honeypot": {
+          "checked": true,
+          "applicable": true,
+          "isHoneypot": false,
+          "honeypotReason": null,
+          "simulationSuccess": true,
+          "risk": "low",
+          "riskLevel": 1,
+          "flags": [],
+          "buyTax": 0,
+          "sellTax": 0,
+          "transferTax": 0,
+          "token": {
+            "name": "PancakeSwap Token",
+            "symbol": "Cake",
+            "holders": 1895537
+          }
+        },
+        "owner": "0x73feaa1ee314f8c655e354234017be2193c9e24e",
+        "verified": true,
+        "verificationMatch": "match",
+        "contractName": "CakeToken"
+      },
+      "durationMs": 4697
+    },
+    {
+      "label": "WBNB (Wrapped BNB)",
+      "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+      "verdict": "ALLOW",
+      "score": 0,
+      "findings": [
+        {
+          "id": "honeypot-clean",
+          "label": "Sell simulation passes (not a honeypot)",
+          "severity": "info",
+          "points": -5
+        },
+        {
+          "id": "verified",
+          "label": "Source code verified on Sourcify",
+          "severity": "info",
+          "points": -10
+        }
+      ],
+      "metadata": {
+        "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+        "chainId": 56,
+        "isContract": true,
+        "codeBytes": 3124,
+        "name": "Wrapped BNB",
+        "symbol": "WBNB",
+        "decimals": 18,
+        "totalSupply": "1572022212548967845545442",
+        "honeypot": {
+          "checked": true,
+          "applicable": true,
+          "isHoneypot": false,
+          "honeypotReason": null,
+          "simulationSuccess": true,
+          "risk": "low",
+          "riskLevel": 1,
+          "flags": [],
+          "buyTax": 0,
+          "sellTax": 0,
+          "transferTax": 0,
+          "token": {
+            "name": "Wrapped BNB",
+            "symbol": "WBNB",
+            "holders": 5357277
+          }
+        },
+        "paused": false,
+        "verified": true,
+        "verificationMatch": "match",
+        "contractName": "WBNB"
+      },
+      "durationMs": 1453
+    },
+    {
+      "label": "USDT (Tether USD, BSC)",
+      "address": "0x55d398326f99059fF775485246999027B3197955",
+      "verdict": "ALLOW",
+      "score": 20,
+      "findings": [
+        {
+          "id": "honeypot-clean",
+          "label": "Sell simulation passes (not a honeypot)",
+          "severity": "info",
+          "points": -5
+        },
+        {
+          "id": "verified",
+          "label": "Source code verified on Sourcify",
+          "severity": "info",
+          "points": -10
+        },
+        {
+          "id": "src:mint",
+          "label": "Owner-mintable supply",
+          "severity": "high",
+          "points": 35
+        },
+        {
+          "id": "src:ownership",
+          "label": "Owner-controlled functions",
+          "severity": "info",
+          "points": 0
+        }
+      ],
+      "metadata": {
+        "address": "0x55d398326f99059fF775485246999027B3197955",
+        "chainId": 56,
+        "isContract": true,
+        "codeBytes": 4413,
+        "name": "Tether USD",
+        "symbol": "USDT",
+        "decimals": 18,
+        "totalSupply": "9184991536508259764116723649",
+        "honeypot": {
+          "checked": true,
+          "applicable": true,
+          "isHoneypot": false,
+          "honeypotReason": null,
+          "simulationSuccess": true,
+          "risk": "low",
+          "riskLevel": 1,
+          "flags": [],
+          "buyTax": 0,
+          "sellTax": 0,
+          "transferTax": 0,
+          "token": {
+            "name": "Tether USD",
+            "symbol": "USDT",
+            "holders": 83143749
+          }
+        },
+        "owner": "0xf68a4b64162906eff0ff6ae34e2bb1cd42fef62d",
+        "verified": true,
+        "verificationMatch": "match",
+        "contractName": "BEP20USDT"
+      },
+      "durationMs": 1150
+    },
+    {
+      "label": "BAGENT (BOND AGENT token)",
+      "address": "0xb50dC583cC6F83750c36789F52d51E12dA664444",
+      "verdict": "CAUTION",
+      "score": 45,
+      "findings": [
+        {
+          "id": "honeypot-na",
+          "label": "No DEX pair — honeypot simulation not applicable",
+          "severity": "info",
+          "points": 0
+        },
+        {
+          "id": "unverified",
+          "label": "Source code NOT verified",
+          "severity": "high",
+          "points": 30
+        },
+        {
+          "id": "byte:mint",
+          "label": "Possible mint function (bytecode)",
+          "severity": "medium",
+          "points": 15
+        }
+      ],
+      "metadata": {
+        "address": "0xb50dC583cC6F83750c36789F52d51E12dA664444",
+        "chainId": 56,
+        "isContract": true,
+        "codeBytes": 6771,
+        "name": "BOND AGENT",
+        "symbol": "BAGENT",
+        "decimals": 18,
+        "totalSupply": "444400000000000000000000000000",
+        "honeypot": {
+          "checked": true,
+          "applicable": false,
+          "reason": "no DEX pair — simulation not applicable"
+        },
+        "owner": "0x0000000000000000000000000000000000000000",
+        "verified": false
+      },
+      "durationMs": 4148
+    },
+    {
+      "label": "HOPKIN GENESIS (free-mint NFT)",
+      "address": "0x2728c134D79D34A977d6D35D8A3014AbB5C97ed4",
+      "verdict": "CAUTION",
+      "score": 50,
+      "findings": [
+        {
+          "id": "unverified",
+          "label": "Source code NOT verified",
+          "severity": "high",
+          "points": 30
+        },
+        {
+          "id": "byte:mint",
+          "label": "Possible mint function (bytecode)",
+          "severity": "medium",
+          "points": 15
+        },
+        {
+          "id": "byte:pausable",
+          "label": "Possibly pausable (bytecode)",
+          "severity": "info",
+          "points": 5
+        }
+      ],
+      "metadata": {
+        "address": "0x2728c134D79D34A977d6D35D8A3014AbB5C97ed4",
+        "chainId": 56,
+        "isContract": true,
+        "codeBytes": 14280,
+        "name": "HOPKIN GENESIS",
+        "symbol": "HOPKIN",
+        "decimals": null,
+        "totalSupply": "4444",
+        "owner": "0x4ee94abf93d1728ca2f97ab4dedd21cc9ff48061",
+        "paused": false,
+        "verified": false
+      },
+      "durationMs": 2044
+    },
+    {
+      "label": "Pokechain (free-mint NFT)",
+      "address": "0x4EF929aF00cB93993c3D01834C4DA79200d31e32",
+      "verdict": "CAUTION",
+      "score": 30,
+      "findings": [
+        {
+          "id": "unverified",
+          "label": "Source code NOT verified",
+          "severity": "high",
+          "points": 30
+        }
+      ],
+      "metadata": {
+        "address": "0x4EF929aF00cB93993c3D01834C4DA79200d31e32",
+        "chainId": 56,
+        "isContract": true,
+        "codeBytes": 17269,
+        "name": "Pokechain",
+        "symbol": "POKECHAIN",
+        "decimals": null,
+        "totalSupply": null,
+        "owner": "0xf379a6070eb04e3e9d8ea28f11f04bd8ff452b59",
+        "verified": false
+      },
+      "durationMs": 2446
+    },
+    {
+      "label": "PICKAXE (free-mint NFT)",
+      "address": "0xc2beaad13ef2833d976957e41b03b6b2661cfab0",
+      "verdict": "CAUTION",
+      "score": 35,
+      "findings": [
+        {
+          "id": "unverified",
+          "label": "Source code NOT verified",
+          "severity": "high",
+          "points": 30
+        },
+        {
+          "id": "byte:pausable",
+          "label": "Possibly pausable (bytecode)",
+          "severity": "info",
+          "points": 5
+        }
+      ],
+      "metadata": {
+        "address": "0xc2beaad13ef2833d976957e41b03b6b2661cfab0",
+        "chainId": 56,
+        "isContract": true,
+        "codeBytes": 11518,
+        "name": "Pickgrid Pickaxe",
+        "symbol": "PICKAXE",
+        "decimals": null,
+        "totalSupply": "303",
+        "owner": "0x72d0d1c285c5aea222e618924410ee3ffd6b28a4",
+        "paused": false,
+        "verified": false
+      },
+      "durationMs": 1057
+    },
+    {
+      "label": "SVN / SEVENFOLD (free-mint NFT)",
+      "address": "0x4ca724a354db4f743607ecc1a5f117b2e617c8ae",
+      "verdict": "CAUTION",
+      "score": 30,
+      "findings": [
+        {
+          "id": "unverified",
+          "label": "Source code NOT verified",
+          "severity": "high",
+          "points": 30
+        }
+      ],
+      "metadata": {
+        "address": "0x4ca724a354db4f743607ecc1a5f117b2e617c8ae",
+        "chainId": 56,
+        "isContract": true,
+        "codeBytes": 17545,
+        "name": "SEVENFOLD",
+        "symbol": "SVN",
+        "decimals": null,
+        "totalSupply": "2190",
+        "verified": false
+      },
+      "durationMs": 1774
+    },
+    {
+      "label": "DRIFTWIRE (free-mint NFT)",
+      "address": "0x485be9daa4620fcee4e2baed7cc85ea57acb44b0",
+      "verdict": "CAUTION",
+      "score": 30,
+      "findings": [
+        {
+          "id": "unverified",
+          "label": "Source code NOT verified",
+          "severity": "high",
+          "points": 30
+        }
+      ],
+      "metadata": {
+        "address": "0x485be9daa4620fcee4e2baed7cc85ea57acb44b0",
+        "chainId": 56,
+        "isContract": true,
+        "codeBytes": 17979,
+        "name": "DRIFTWIRE",
+        "symbol": "DRIFT",
+        "decimals": null,
+        "totalSupply": "1468",
+        "verified": false
+      },
+      "durationMs": 1735
+    },
+    {
+      "label": "WBTC (Binance-peg Wrapped BTC)",
+      "address": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+      "verdict": "ALLOW",
+      "score": 5,
+      "findings": [
+        {
+          "id": "honeypot-flag",
+          "label": "Third-party simulator flags this token (possible false positive)",
+          "severity": "medium",
+          "points": 15
+        },
+        {
+          "id": "verified",
+          "label": "Source code verified on Sourcify",
+          "severity": "info",
+          "points": -10
+        },
+        {
+          "id": "src:ownership",
+          "label": "Owner-controlled functions",
+          "severity": "info",
+          "points": 0
+        }
+      ],
+      "metadata": {
+        "address": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+        "chainId": 56,
+        "isContract": true,
+        "codeBytes": 13649,
+        "name": "Wrapped BTC",
+        "symbol": "WBTC",
+        "decimals": 8,
+        "totalSupply": "5293033848",
+        "honeypot": {
+          "checked": true,
+          "applicable": true,
+          "isHoneypot": true,
+          "honeypotReason": "HONEYPOT DETECTED",
+          "simulationSuccess": true,
+          "risk": "honeypot",
+          "riskLevel": 100,
+          "flags": [
+            "low_fail_rate"
+          ],
+          "buyTax": 0,
+          "sellTax": 0,
+          "transferTax": 0,
+          "token": {
+            "name": "Wrapped BTC",
+            "symbol": "WBTC",
+            "holders": 5195
+          }
+        },
+        "owner": "0xc5a7622582b2958e3f8ab0c18489d21b2d125fec",
+        "verified": true,
+        "verificationMatch": "match",
+        "contractName": "OFTCore"
+      },
+      "durationMs": 2081
+    }
+  ],
+  "txs": [
+    {
+      "label": "latest-block tx",
+      "hash": "0x3781e614258b9706d9e93771b04546e599380d237f808f3de9607d6cc1c7a7df",
+      "to": "0x1b3da9616e6133feeea0dd769858fb08d4d4cd04",
+      "verdict": "ALLOW",
+      "score": 0,
+      "findings": [
+        {
+          "id": "tx-plain-transfer",
+          "label": "Plain BNB transfer to an externally owned account",
+          "severity": "info",
+          "points": 0
+        }
+      ],
+      "metadata": {
+        "txHash": "0x3781e614258b9706d9e93771b04546e599380d237f808f3de9607d6cc1c7a7df",
+        "chainId": 56,
+        "from": "0x1b3da9616e6133feeea0dd769858fb08d4d4cd04",
+        "to": "0x1b3da9616e6133feeea0dd769858fb08d4d4cd04",
+        "valueWei": "0",
+        "status": "success",
+        "target": {
+          "address": "0x1b3da9616e6133feeea0dd769858fb08d4d4cd04",
+          "isContract": false
+        },
+        "targetVerdict": "ALLOW",
+        "targetScore": 0
+      },
+      "durationMs": 288
+    },
+    {
+      "label": "approve tx (if found)",
+      "hash": "0x6fa22aec93e5c275f8ddce64095581879c97e1b6354f1a0dc5289ac8c9246724",
+      "to": "0xb8d3ed02fc554512555ba39ce1b2c4e0cc367777",
+      "verdict": "CAUTION",
+      "score": 50,
+      "findings": [
+        {
+          "id": "tx-unlimited-approval",
+          "label": "Unlimited token approval in this transaction",
+          "severity": "high",
+          "points": 20
+        },
+        {
+          "id": "target:honeypot-na",
+          "label": "No DEX pair — honeypot simulation not applicable",
+          "severity": "info",
+          "points": 0
+        },
+        {
+          "id": "target:unverified",
+          "label": "Source code NOT verified",
+          "severity": "high",
+          "points": 30
+        },
+        {
+          "id": "tx-approvals-emitted",
+          "label": "1 Approval event(s) emitted",
+          "severity": "info",
+          "points": 0
+        }
+      ],
+      "metadata": {
+        "txHash": "0x6fa22aec93e5c275f8ddce64095581879c97e1b6354f1a0dc5289ac8c9246724",
+        "chainId": 56,
+        "from": "0x9e6d58454dfc44c748d480d6adf9133aede933e2",
+        "to": "0xb8d3ed02fc554512555ba39ce1b2c4e0cc367777",
+        "valueWei": "0",
+        "status": "success",
+        "approval": {
+          "token": "0xb8d3ed02fc554512555ba39ce1b2c4e0cc367777",
+          "spender": "0x000000000022d473030f116ddee9f6b43ac78ba3",
+          "amount": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+          "unlimited": true
+        },
+        "target": {
+          "address": "0xb8d3ed02fc554512555ba39ce1b2c4e0cc367777",
+          "chainId": 56,
+          "isContract": true,
+          "codeBytes": 45,
+          "name": "FPI",
+          "symbol": "FPI",
+          "decimals": 18,
+          "totalSupply": "1000000000000000000000000000",
+          "honeypot": {
+            "checked": true,
+            "applicable": false,
+            "reason": "no DEX pair — simulation not applicable"
+          },
+          "owner": "0xe2ce6ab80874fa9fa2aae65d277dd6b8e65c9de0",
+          "verified": false
+        },
+        "targetVerdict": "CAUTION",
+        "targetScore": 30,
+        "approvalsEmitted": 1
+      },
+      "durationMs": 2081
+    },
+    {
+      "label": "fixed unlimited-approve tx (WBTC -> PancakeSwap router)",
+      "hash": "0x613993a2b67300d309f30cce999bcf2ff7980d08e9f008c83136e60bb3babfc6",
+      "verdict": "ALLOW",
+      "score": 25,
+      "findings": [
+        {
+          "id": "tx-unlimited-approval",
+          "label": "Unlimited token approval in this transaction",
+          "severity": "high",
+          "points": 20
+        },
+        {
+          "id": "target:honeypot-flag",
+          "label": "Third-party simulator flags this token (possible false positive)",
+          "severity": "medium",
+          "points": 15
+        },
+        {
+          "id": "target:verified",
+          "label": "Source code verified on Sourcify",
+          "severity": "info",
+          "points": -10
+        },
+        {
+          "id": "target:src:ownership",
+          "label": "Owner-controlled functions",
+          "severity": "info",
+          "points": 0
+        },
+        {
+          "id": "tx-approvals-emitted",
+          "label": "1 Approval event(s) emitted",
+          "severity": "info",
+          "points": 0
+        }
+      ],
+      "metadata": {
+        "txHash": "0x613993a2b67300d309f30cce999bcf2ff7980d08e9f008c83136e60bb3babfc6",
+        "chainId": 56,
+        "from": "0x05abde6bfde00c8f1fa012d4531579b2051d6a21",
+        "to": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+        "valueWei": "0",
+        "status": "success",
+        "approval": {
+          "token": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+          "spender": "0x000000000022d473030f116ddee9f6b43ac78ba3",
+          "amount": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+          "unlimited": true
+        },
+        "target": {
+          "address": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+          "chainId": 56,
+          "isContract": true,
+          "codeBytes": 13649,
+          "name": "Wrapped BTC",
+          "symbol": "WBTC",
+          "decimals": 8,
+          "totalSupply": "5293033848",
+          "honeypot": {
+            "checked": true,
+            "applicable": true,
+            "isHoneypot": true,
+            "honeypotReason": "HONEYPOT DETECTED",
+            "simulationSuccess": true,
+            "risk": "honeypot",
+            "riskLevel": 100,
+            "flags": [
+              "low_fail_rate"
+            ],
+            "buyTax": 0,
+            "sellTax": 0,
+            "transferTax": 0,
+            "token": {
+              "name": "Wrapped BTC",
+              "symbol": "WBTC",
+              "holders": 5195
+            }
+          },
+          "owner": "0xc5a7622582b2958e3f8ab0c18489d21b2d125fec",
+          "verified": true,
+          "verificationMatch": "match",
+          "contractName": "OFTCore"
+        },
+        "targetVerdict": "ALLOW",
+        "targetScore": 5,
+        "approvalsEmitted": 1
+      },
+      "durationMs": 1442
+    }
+  ],
+  "edge": [
+    {
+      "label": "EOA (Abid's wallet, no code)",
+      "input": "0x0EB78e4c2CBeaeddF2658B98Dc6f203862d734B8",
+      "verdict": "BLOCK",
+      "score": 100,
+      "findings": [
+        "no-code"
+      ]
+    },
+    {
+      "label": "garbage input",
+      "input": "hello world",
+      "verdict": "BLOCK",
+      "score": 100,
+      "findings": [
+        "invalid-input"
+      ]
+    },
+    {
+      "label": "nonexistent tx hash",
+      "input": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "verdict": "BLOCK",
+      "score": 100,
+      "findings": [
+        "tx-not-found"
+      ]
+    },
+    {
+      "label": "empty input",
+      "input": "",
+      "verdict": "BLOCK",
+      "score": 100,
+      "findings": [
+        "invalid-input"
+      ]
+    }
+  ]
+}
